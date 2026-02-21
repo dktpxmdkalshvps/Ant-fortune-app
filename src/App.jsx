@@ -648,7 +648,7 @@ function PillarTable({pillars}) {
     { key:"si",   label:"시주(時柱)", sub:"생시" },
   ];
   return (
-    <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:8,marginBottom:16}}>
+    <div className="grid-pillars">
       {cols.map(({key,label,sub})=>{
         const p = pillars[key];
         if (!p) return (
@@ -809,7 +809,7 @@ function LuckyPanel({lucky, extra=0}) {
   return (
     <Panel>
       <STitle icon="✦">오늘의 행운 아이템</STitle>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:10}}>
+      <div className="grid-lucky">
         {[
           {icon:"🔢",label:"LUCKY NUMBER",val:lucky.number},
           {icon:"🎨",label:"LUCKY COLOR", val:lucky.color},
@@ -1041,7 +1041,16 @@ export default function AntFortune() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700;900&family=Cinzel+Decorative:wght@400;700&family=Share+Tech+Mono&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
         *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        body{background:#04070D;color:#DCE6F4;font-family:'Noto Sans KR',sans-serif}
+        body{background:#04070D;color:#DCE6F4;font-family:'Noto Sans KR',sans-serif;overflow-x:hidden}
+        .grid-zodiac { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 18px; }
+        .grid-pillars { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+        .grid-lucky { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+        @media (max-width: 768px) {
+          .grid-zodiac { grid-template-columns: repeat(3, 1fr); }
+          .grid-pillars { grid-template-columns: repeat(2, 1fr); }
+          .grid-lucky { grid-template-columns: repeat(2, 1fr); }
+        }
         select,input{appearance:none;-webkit-appearance:none}
         select option{background:#101828;color:#DCE6F4}
         ::-webkit-scrollbar{width:4px}
@@ -1177,7 +1186,7 @@ export default function AntFortune() {
             {/* 직접 선택 */}
             <div style={{fontFamily:F.mono,fontSize:10,color:C.dim,letterSpacing:2,
               marginBottom:12,textAlign:"center"}}>— 또는 별자리 직접 선택 —</div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(6,1fr)",gap:8,marginBottom:18}}>
+            <div className="grid-zodiac">
               {ZODIACS_LIST.map((z)=>{
                 const sel=selZodiac===z.sign;
                 return (
@@ -1233,7 +1242,6 @@ export default function AntFortune() {
           ⚠ 본 결과는 순수한 재미와 엔터테인먼트 목적의 운세 기반 콘텐츠입니다.<br/>
           본 사주 계산은 오락용 근사치 알고리즘을 사용하므로 실제와 다를 수 있습니다.<br/>
           실제 투자 결정의 근거로 사용하지 마십시오. 모든 투자의 책임은 본인에게 있습니다.<br/>
-          This is NOT financial advice · 이 앱은 외부 API를 전혀 사용하지 않습니다.
         </div>
       </div>
     </>
