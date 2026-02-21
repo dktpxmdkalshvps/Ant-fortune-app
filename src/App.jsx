@@ -485,12 +485,21 @@ function StarField() {
     const cv = ref.current, ctx = cv.getContext("2d");
     let raf;
     const stars = [];
-    const resize = () => { cv.width=innerWidth; cv.height=innerHeight; };
+    const resize = () => {
+      cv.width = innerWidth;
+      cv.height = innerHeight;
+      stars.length = 0;
+      for (let i = 0; i < 220; i++)
+        stars.push({
+          x: Math.random() * cv.width,
+          y: Math.random() * cv.height,
+          r: Math.random() * 1.4 + 0.2,
+          op: Math.random() * 0.6 + 0.1,
+          spd: Math.random() * 0.015 + 0.003,
+          ph: Math.random() * Math.PI * 2,
+        });
+    };
     resize();
-    for (let i=0;i<220;i++)
-      stars.push({ x:Math.random()*cv.width, y:Math.random()*cv.height,
-        r:Math.random()*1.4+.2, op:Math.random()*.6+.1,
-        spd:Math.random()*.015+.003, ph:Math.random()*Math.PI*2 });
     const draw = t => {
       ctx.clearRect(0,0,cv.width,cv.height);
       // 은하 흐름 그라디언트
@@ -814,7 +823,10 @@ function LuckyPanel({lucky, extra=0}) {
             <div style={{fontFamily:F.serif,fontSize:12.5,color:C.goldL,fontWeight:700}}>{item.val}</div>
           </div>
         ))}
-        <div onClick={()=>setPop(p=>!p)} style={{background:C.panel2,
+        <div onClick={()=>setPop(p=>!p)}
+             role="button" tabIndex={0}
+             onKeyDown={(e)=>(e.key==="Enter"||e.key===" ")&&setPop(p=>!p)}
+             style={{background:C.panel2,
           border:`1px solid ${pop?"#FF3B3B50":C.border}`,borderRadius:7,padding:"13px 10px",
           textAlign:"center",cursor:"pointer",gridColumn:"span 2",transition:"border-color .3s"}}>
           <div style={{width:64,height:64,borderRadius:"50%",margin:"0 auto 8px",
@@ -953,6 +965,11 @@ const ZODIACS_LIST = [
   {sign:"물고기자리",symbol:"♓",dates:"2.19~3.20"},
 ];
 
+function isValidDate(y, m, d) {
+  const date = new Date(y, m - 1, d);
+  return date.getFullYear() === y && date.getMonth() === m - 1 && date.getDate() === d;
+}
+
 export default function AntFortune() {
   const [mode, setMode]       = useState("saju");
   // 사주
@@ -984,6 +1001,7 @@ export default function AntFortune() {
     setError("");
     if(!yr||!mo||!dy){setError("생년월일을 모두 입력해주세요.");return;}
     const y=Number(yr),m=Number(mo),d=Number(dy);
+    if (!isValidDate(y, m, d)) { setError("유효하지 않은 날짜입니다. (예: 2월 30일)"); return; }
     if(y<1900||y>2010){setError("연도를 확인해주세요 (1900~2010).");return;}
     setLoading(true);
     setTimeout(()=>{
@@ -998,6 +1016,9 @@ export default function AntFortune() {
 
   const runZodiac = () => {
     setError("");
+    if (bMo && bDy && !isValidDate(2000, Number(bMo), Number(bDy))) {
+      setError("유효하지 않은 날짜입니다. (예: 2월 30일)"); return;
+    }
     if(!selZodiac){setError("생일(월/일)을 입력하거나 별자리를 직접 선택해주세요.");return;}
     setLoading(true);
     setTimeout(()=>{
@@ -1160,7 +1181,10 @@ export default function AntFortune() {
               {ZODIACS_LIST.map((z)=>{
                 const sel=selZodiac===z.sign;
                 return (
-                  <div key={z.sign} onClick={()=>setSelZodiac(z.sign)} style={{
+                  <div key={z.sign} onClick={()=>setSelZodiac(z.sign)}
+                       role="button" tabIndex={0}
+                       onKeyDown={(e)=>(e.key==="Enter"||e.key===" ")&&setSelZodiac(z.sign)}
+                       style={{
                     background:sel?"rgba(201,168,76,.13)":C.panel2,
                     border:`1px solid ${sel?C.gold:"rgba(201,168,76,.14)"}`,
                     borderRadius:7,padding:"10px 5px",textAlign:"center",cursor:"pointer",
@@ -1207,6 +1231,7 @@ export default function AntFortune() {
           fontFamily:F.mono,letterSpacing:.5,lineHeight:1.9,
           borderTop:"1px solid rgba(255,255,255,.04)",marginTop:28}}>
           ⚠ 본 결과는 순수한 재미와 엔터테인먼트 목적의 운세 기반 콘텐츠입니다.<br/>
+          본 사주 계산은 오락용 근사치 알고리즘을 사용하므로 실제와 다를 수 있습니다.<br/>
           실제 투자 결정의 근거로 사용하지 마십시오. 모든 투자의 책임은 본인에게 있습니다.<br/>
           This is NOT financial advice · 이 앱은 외부 API를 전혀 사용하지 않습니다.
         </div>
