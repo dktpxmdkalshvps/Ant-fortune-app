@@ -245,9 +245,9 @@ function OhaengGauge({score,lacking,dominant}) {
               border:`1px solid ${isLack?"#FFD700":isDom?"#FF7055":OH_COLOR[oh]+"40"}`,
               borderRadius:7,padding:"10px 6px",textAlign:"center",position:"relative"}}>
               {isLack&&<div style={{position:"absolute",top:-10,left:"50%",transform:"translateX(-50%)",
-                fontSize:9,color:"#FFD700",whiteSpace:"nowrap",fontFamily:F.mono}}>부족↑</div>}
+                fontSize:9,color:"#FFD700",whiteSpace:"nowrap",fontFamily:F.mono}}>부족</div>}
               {isDom&&<div style={{position:"absolute",top:-10,left:"50%",transform:"translateX(-50%)",
-                fontSize:9,color:"#FF8070",whiteSpace:"nowrap",fontFamily:F.mono}}>과다↓</div>}
+                fontSize:9,color:"#FF8070",whiteSpace:"nowrap",fontFamily:F.mono}}>과다</div>}
               <div style={{fontSize:20,color:OH_COLOR[oh],
                 textShadow:`0 0 12px ${OH_COLOR[oh]}88`,marginBottom:3}}>{OH_CHAR[oh]}</div>
               <div style={{fontFamily:F.mono,fontSize:10,color:OH_COLOR[oh]}}>{oh}</div>
@@ -575,10 +575,6 @@ export default function AntFortune() {
 
         {/* 헤더 */}
         <div style={{textAlign:"center",padding:"44px 0 28px"}}>
-          <div style={{fontFamily:F.mono,fontSize:10,letterSpacing:5,
-            color:C.gold,marginBottom:14,opacity:.7}}>
-            ✦ 완전 로컬 · 만세력 오행 엔진 · API 없음 ✦
-          </div>
           <h1 style={{fontFamily:F.display,fontSize:"clamp(20px,3.2vw,36px)",
             color:C.goldL,animation:"glow 4s ease-in-out infinite",
             letterSpacing:2,marginBottom:8}}>개미의 하루</h1>
@@ -666,7 +662,7 @@ export default function AntFortune() {
             </div>
             {/* 생일 입력 */}
             <div style={{display:"flex",gap:13,marginBottom:20,flexWrap:"wrap"}}>
-              <Sel label="태어난 월 (자동 판별)" value={zodiacForm.month} onChange={v => {
+              <Sel label="태어난 월" value={zodiacForm.month} onChange={v => {
                 const s = updateZodiacSign(v, zodiacForm.day);
                 setZodiacForm(prev => ({ ...prev, month: v, sign: s || prev.sign }));
               }}>
