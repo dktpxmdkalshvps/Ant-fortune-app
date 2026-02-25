@@ -423,6 +423,8 @@ npm run build
 ---
 
 ## 7. 스크린샷
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/09366402-e3ea-44ee-acec-981fe5c5f51a" />
+
 
 ### 7-1. 메인 화면 — 일진 배지 & 시장 상태
 
@@ -573,6 +575,31 @@ Past celestial performance does not guarantee future returns.
 
 ---
 
+## 🐛 이슈 및 해결 과정 (Troubleshooting)
+
+### 이슈 1: LLM API 직접 호출 시 CORS 에러 및 보안 취약점 발생
+
+* **문제 상황 (Problem):**
+Vercel 배포 후, 클라이언트(React)에서 Anthropic API를 직접 호출하자 브라우저 콘솔에 `CORS (Cross-Origin Resource Sharing)` 에러가 발생하며 데이터가 로드되지 않음.
+* **원인 분석 (Cause):**
+1. **보안 정책:** 브라우저는 보안상의 이유로 스크립트 내에서 타 도메인(Anthropic API)으로의 직접적인 리소스 요청을 차단함.
+2. **키 노출 위험:** 프론트엔드 코드에 API Key를 포함시킬 경우, 네트워크 탭을 통해 키가 외부로 유출될 치명적인 보안 위험이 있음.
+
+
+* **해결 방안 (Solution):**
+* **아키텍처 변경:** 클라이언트가 직접 API를 호출하는 방식에서, **Backend Proxy**를 거치는 방식으로 구조를 변경했습니다.
+* **Serverless Function 도입:** Vercel의 Serverless Functions(또는 Next.js API Routes)를 활용하여 API Key를 서버 환경 변수(`Environment Variable`)로 안전하게 숨기고, 서버 측에서 API를 호출하여 결과만 클라이언트로 전달하도록 수정했습니다.
+
+
+
+### 이슈 2: 오행 데이터 시각화의 정밀도 문제
+
+* **문제 상황:** 초기에 오행(목, 화, 토, 금, 수)의 수치를 단순 랜덤값이나 텍스트로만 처리하여 사용자에게 직관적인 정보를 주지 못함.
+* **해결:**
+* 각 오행의 수치를 0~100 사이의 값으로 정규화하고, 이를 CSS `transition` 속성이 적용된 프로그레스 바(Progress Bar) 컴포넌트로 시각화하여 사용자가 자신의 '부족한 기운'을 한눈에 파악할 수 있도록 개선했습니다.
+
+
+---
 <div align="center">
 
 **개미의 하루** · 별자리·사주 투자 운세  
