@@ -1,5 +1,11 @@
 # 🌟 개미의 하루 (Gaemi's Day)
-> **별자리 · 사주 기반 국내/미국 주식 투자 운세 앱**  
+> **별자리 · 사주 기반 국내/미국 주식 투자 운세 앱**
+
+![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white)
+![Zero Frontend Dependencies](https://img.shields.io/badge/frontend_dependencies-zero-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Browser](https://img.shields.io/badge/browser-Chrome_90%2B_%7C_Firefox_88%2B_%7C_Safari_14%2B-orange)
+
 ---
 
 ## 📌 목차
@@ -11,8 +17,10 @@
 5. [프로젝트 구조](#5-프로젝트-구조)
 6. [설치 및 실행 방법](#6-설치-및-실행-방법)
 7. [스크린샷](#7-스크린샷)
-8. [면책 조항](#8-면책-조항)
-9. [이슈 및 해결 과정](#9-이슈-및-해결-과정)
+8. [이슈 및 해결 과정](#8-이슈-및-해결-과정)
+9. [기여 방법](#9-기여-방법)
+10. [라이선스](#10-라이선스)
+11. [면책 조항](#11-면책-조항)
 
 ---
 
@@ -54,6 +62,15 @@ CSS-in-JS         인라인 스타일 + <style> 태그 (별도 CSS 파일 없음
 Canvas API        별 파티클 배경 애니메이션 (requestAnimationFrame)
 ```
 
+### 백엔드 (운세 텍스트 생성)
+
+```
+Vercel Serverless Functions   API Key를 서버 환경 변수로 관리, 클라이언트 노출 없음
+Anthropic API                 운세 문구 생성 (서버 측 호출)
+```
+
+> 📝 **의존성 구분:** 오행·만세력 등 모든 **계산 로직**은 프론트엔드에서 외부 라이브러리 없이 순수 JavaScript로 동작합니다. Anthropic API는 운세 **텍스트 생성** 목적으로만 서버리스 함수를 통해 호출됩니다.
+
 ### 폰트
 
 ```
@@ -62,15 +79,6 @@ Noto Serif KR       한국어 본문 세리프체 (Google Fonts)
 Share Tech Mono     라벨·코드·수치 모노스페이스 폰트 (Google Fonts)
 Noto Sans KR        UI 기본 산세리프체 (Google Fonts)
 ```
-
-### 외부 의존성
-
-```
-없음 (Zero Dependencies)
-```
-
-모든 알고리즘은 순수 JavaScript로 구현되어 있으며,
-React 자체를 제외한 어떠한 외부 라이브러리도 사용하지 않습니다.
 
 ### 실행 환경
 
@@ -422,8 +430,8 @@ npm run build
 ---
 
 ## 7. 스크린샷
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/09366402-e3ea-44ee-acec-981fe5c5f51a" />
 
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/09366402-e3ea-44ee-acec-981fe5c5f51a" />
 
 ### 7-1. 메인 화면 — 일진 배지 & 시장 상태
 
@@ -445,8 +453,8 @@ npm run build
 ```
 
 ### 7-2. 별자리 선택 그리드
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/b1555d88-29e9-46aa-a584-d10f6ca0fe4f" />
 
+<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/b1555d88-29e9-46aa-a584-d10f6ca0fe4f" />
 
 ```
 ┌──────────────────────────────────────────────────────────┐
@@ -465,6 +473,7 @@ npm run build
 ```
 
 ### 7-3. 투자 스탠스 배너 (매수 예시)
+
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/34d582d8-34dd-4efd-bdcd-e2ae43f59569" />
 
 ```
@@ -513,9 +522,7 @@ npm run build
 │            보충 필요↑                                    │
 │  ┌────┐  ┌────┐  ┌────┐  ┌────┐  ┌────┐               │
 │  │ 木 │  │ 火 │  │ 土 │  │ 金 │  │ 水 │               │
-│  │목  │  │화  │  │토  │  │금  │  │수  │               │
 │  │ 8% │  │35% │  │22% │  │12% │  │23% │               │
-│  │████│  │████│  │████│  │████│  │████│               │
 │  └────┘  └────┘  └────┘  └────┘  └────┘               │
 │  ⬆ 보충 필요: 木(목)  |  ⬇ 과다: 火(화)                 │
 └──────────────────────────────────────────────────────────┘
@@ -528,8 +535,6 @@ npm run build
 │ ☀️ 낮의 장  KR MARKET   │  │ 🌙 밤의 장  US MARKET   │
 │  KOSPI · KOSDAQ          │  │  NYSE · NASDAQ           │
 │─────────────────────────│  │─────────────────────────│
-│ 바이오 반도체 친환경      │  │ 빅테크 AI칩 헬스케어     │
-│                          │  │                          │
 │ 01 바이오·헬스케어  [매수]│  │ 01 헬스케어 ETF    [매수]│
 │ 02 친환경·ESG      [매수]│  │ 02 그린에너지      [매수]│
 │ 03 농업·식품       [관망]│  │ 03 농업·소재 ETF   [관망]│
@@ -537,29 +542,88 @@ npm run build
 ```
 
 ### 7-8. 행운 아이템 패널
+
 <img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/5c85f593-d095-47ee-94ee-959b31c94724" />
 
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ ✦ 오늘의 행운 아이템                                     │
 │                                                          │
-│  ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐        │
-│  │  🔢    │  │  🎨    │  │  ⏰    │  │  🔑    │        │
-│  │LUCKY   │  │LUCKY   │  │BEST    │  │KEYWORD │        │
-│  │NUMBER  │  │COLOR   │  │TIME    │  │        │        │
-│  │  3, 8  │  │초록색   │  │오전7~9시│  │성장    │        │
-│  └────────┘  └────────┘  └────────┘  └────────┘        │
+│  🔢 LUCKY NUMBER  🎨 LUCKY COLOR  ⏰ BEST TIME  🔑 KEYWORD │
+│       3, 8            초록색        오전 7~9시      성장  │
+│                                                          │
 │  ┌──────────────────────────────────────────────┐       │
-│  │              🔴  (클릭!)                     │       │
-│  │      상승장 기원 부적 · 클릭해서 기운 충전!   │       │
-│  │          양봉이 피어오르리라 🕯               │       │
+│  │           🔴  (클릭!)                        │       │
+│  │   상승장 기원 부적 · 클릭해서 기운 충전!      │       │
+│  │       양봉이 피어오르리라 🕯                  │       │
 │  └──────────────────────────────────────────────┘       │
 └──────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 8. 면책 조항
+## 8. 이슈 및 해결 과정
+
+### 이슈 1: LLM API 직접 호출 시 CORS 에러 및 보안 취약점
+
+**문제 상황**
+
+Vercel 배포 후, 클라이언트(React)에서 Anthropic API를 직접 호출하자 브라우저 콘솔에 `CORS (Cross-Origin Resource Sharing)` 에러가 발생하며 데이터가 로드되지 않았습니다.
+
+**원인 분석**
+
+- **보안 정책:** 브라우저는 보안상의 이유로 스크립트 내에서 타 도메인(Anthropic API)으로의 직접적인 리소스 요청을 차단합니다.
+- **키 노출 위험:** 프론트엔드 코드에 API Key를 포함시킬 경우, 네트워크 탭을 통해 키가 외부로 유출될 치명적인 보안 위험이 존재합니다.
+
+**해결 방안**
+
+아키텍처를 클라이언트 직접 호출 방식에서 **Backend Proxy** 경유 방식으로 변경했습니다. Vercel의 Serverless Functions를 활용하여 API Key를 서버 환경 변수(`Environment Variable`)로 안전하게 관리하고, 서버 측에서 API를 호출한 뒤 결과만 클라이언트로 전달하도록 수정했습니다.
+
+```
+[Before]  Client (React) → Anthropic API  ← CORS 차단, 키 노출 위험
+[After]   Client (React) → Vercel Function → Anthropic API  ← 안전
+```
+
+---
+
+### 이슈 2: 오행 데이터 시각화의 정밀도 문제
+
+**문제 상황**
+
+초기에 오행(목, 화, 토, 금, 수)의 수치를 단순 랜덤값이나 텍스트로만 처리하여 사용자에게 직관적인 정보를 제공하지 못했습니다.
+
+**해결 방안**
+
+각 오행의 수치를 0~100 사이의 값으로 정규화하고, CSS `transition` 속성이 적용된 프로그레스 바(Progress Bar) 컴포넌트로 시각화했습니다. 이를 통해 사용자가 자신의 '부족한 기운'을 한눈에 파악할 수 있도록 개선했습니다.
+
+---
+
+## 9. 기여 방법
+
+버그 리포트, 기능 제안, PR 모두 환영합니다!
+
+1. 이 저장소를 **Fork** 합니다.
+2. 새 브랜치를 생성합니다. (`git checkout -b feature/새기능`)
+3. 변경 사항을 커밋합니다. (`git commit -m 'Add 새기능'`)
+4. 브랜치에 Push 합니다. (`git push origin feature/새기능`)
+5. **Pull Request**를 열어 주세요.
+
+이슈 트래커에서 `good first issue` 라벨이 붙은 항목부터 시작하시면 좋습니다.
+
+---
+
+## 10. 라이선스
+
+이 프로젝트는 [dktpxmdkalshvps License](LICENSE) 하에 배포됩니다.
+
+```
+dktpxmdkalshvps License
+Copyright (c) 2024 개미의 하루
+```
+
+---
+
+## 11. 면책 조항
 
 ```
 ⚠️  DISCLAIMER
@@ -578,35 +642,8 @@ Past celestial performance does not guarantee future returns.
 
 ---
 
-## 9. 이슈 및 해결 과정
-
-```
-### 이슈 1: LLM API 직접 호출 시 CORS 에러 및 보안 취약점 발생
-
-* **문제 상황 (Problem):**
-Vercel 배포 후, 클라이언트(React)에서 Anthropic API를 직접 호출하자 브라우저 콘솔에 `CORS (Cross-Origin Resource Sharing)` 에러가 발생하며 데이터가 로드되지 않음.
-* **원인 분석 (Cause):**
-1. **보안 정책:** 브라우저는 보안상의 이유로 스크립트 내에서 타 도메인(Anthropic API)으로의 직접적인 리소스 요청을 차단함.
-2. **키 노출 위험:** 프론트엔드 코드에 API Key를 포함시킬 경우, 네트워크 탭을 통해 키가 외부로 유출될 치명적인 보안 위험이 있음.
-
-
-* **해결 방안 (Solution):**
-* **아키텍처 변경:** 클라이언트가 직접 API를 호출하는 방식에서, **Backend Proxy**를 거치는 방식으로 구조를 변경했습니다.
-* **Serverless Function 도입:** Vercel의 Serverless Functions(또는 Next.js API Routes)를 활용하여 API Key를 서버 환경 변수(`Environment Variable`)로 안전하게 숨기고, 서버 측에서 API를 호출하여 결과만 클라이언트로 전달하도록 수정했습니다.
-
-
-
-### 이슈 2: 오행 데이터 시각화의 정밀도 문제
-
-* **문제 상황:** 초기에 오행(목, 화, 토, 금, 수)의 수치를 단순 랜덤값이나 텍스트로만 처리하여 사용자에게 직관적인 정보를 주지 못함.
-* **해결:**
-* 각 오행의 수치를 0~100 사이의 값으로 정규화하고, 이를 CSS `transition` 속성이 적용된 프로그레스 바(Progress Bar) 컴포넌트로 시각화하여 사용자가 자신의 '부족한 기운'을 한눈에 파악할 수 있도록 개선했습니다.
-```
-
----
 <div align="center">
 
-**개미의 하루** · 별자리·사주 투자 운세  
-Made with ☯️ & ⭐ · 완전 로컬 · Zero API
+**개미의 하루** · 별자리·사주 투자 운세
 
-</div>your project.
+</div>
