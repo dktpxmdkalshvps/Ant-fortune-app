@@ -435,61 +435,44 @@ npm run build
 
 ### 7-1. 메인 화면 — 일진 배지 & 시장 상태
 
-```
 <img width="1731" height="2084" alt="image" src="https://github.com/user-attachments/assets/6fa33b1c-732a-43c0-bec9-35f99e75be11" />
-```
+
 
 ### 7-2. 별자리 선택 그리드
 
-```
 <img width="1731" height="2366" alt="image" src="https://github.com/user-attachments/assets/257c6240-a507-44a3-9dda-1ce731eb8572" />
-```
+
 
 ### 7-3. 투자 스탠스 배너 (매수 예시)
 
-```
 <img width="944" height="452" alt="image" src="https://github.com/user-attachments/assets/72676920-7e11-4724-82a4-c6419378ac1b" />
 
-```
 
 ### 7-4. 오늘의 일진 카드
 
-```
 <img width="1012" height="499" alt="image" src="https://github.com/user-attachments/assets/04792d5d-8499-441c-bba6-6a48f7bf2213" />
 
-```
 
 ### 7-5. 사주팔자 카드 (딥 모드)
 
-```
 <img width="926" height="475" alt="image" src="https://github.com/user-attachments/assets/c92387b4-7370-40d2-bbac-03e308dc7157" />
 
-```
 
 ### 7-6. 오행 분포 바
 
-```
 <img width="973" height="442" alt="image" src="https://github.com/user-attachments/assets/7f7630d0-aeab-4311-8988-ff93cc995b99" />
 
-```
 
 ### 7-7. 국장·미장 섹터 추천 패널
 
-```
 <img width="928" height="469" alt="image" src="https://github.com/user-attachments/assets/ddcc27e0-95bd-4d61-960f-f1e233d95a03" />
 
-```
 
 ### 7-8. 행운 아이템 패널
 
-<img width="1920" height="1020" alt="image" src="https://github.com/user-attachments/assets/5c85f593-d095-47ee-94ee-959b31c94724" />
+<img width="1204" height="612" alt="image" src="https://github.com/user-attachments/assets/c5cf4f1d-837e-4bfd-aed3-adad3007dd01" />
 
-```
-<img width="934" height="479" alt="image" src="https://github.com/user-attachments/assets/65a301ac-4e51-428a-aa14-92b094e68749" />
 
-```
-
----
 
 ## 8. 이슈 및 해결 과정
 
@@ -543,10 +526,10 @@ Vercel 배포 후, 클라이언트(React)에서 Anthropic API를 직접 호출�
 
 ## 10. 라이선스
 
-이 프로젝트는 [dktpxmdkalshvps License](LICENSE) 하에 배포됩니다.
+이 프로젝트는 [MIT License](LICENSE) 하에 배포됩니다.
 
 ```
-dktpxmdkalshvps License
+MIT License
 Copyright (c) 2024 개미의 하루
 ```
 
